@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.kashifirshad.listview.AddProjectActivity"
+        >
+
+    <Button
+        android:id="@+id/btnSaveProj"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="28dp"
+        android:text="Save"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnHome"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="28dp"
+        android:text="Home"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/textProjName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/btnSaveProj"
+        android:layout_marginTop="15dp"
+        android:text="Project Name:" />
+
+    <EditText
+        android:id="@+id/editProjTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textProjName"
+        android:layout_marginTop="14dp"
+        android:hint="Project Name"
+        android:inputType="textPersonName"
+        android:maxLength="35" />
+
+    <TextView
+        android:id="@+id/textHours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/editProjTitle"
+        android:layout_marginTop="15dp"
+        android:text="Estimated No. of Hours for Development:" />
+
+    <EditText
+        android:id="@+id/editHours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textHours"
+        android:layout_marginTop="10dp"
+        android:hint="Estimated No. of Hours for Development"
+        android:inputType="number"
+        />
+
+    <TextView
+        android:id="@+id/textCost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/editHours"
+        android:layout_marginTop="15dp"
+        android:text="Estimated Cost in $:" />
+
+    <EditText
+        android:id="@+id/editCost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textCost"
+        android:layout_marginTop="10dp"
+        android:hint="Estimated Cost in $"
+        android:inputType="number"
+        />
+
+    <TextView
+        android:id="@+id/textId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editCost"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="21dp"
+        android:text="Id:"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/textId2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textId"
+        android:layout_alignBottom="@+id/textId"
+        android:layout_alignStart="@+id/btnSaveProj"
+        android:layout_marginStart="22dp"
+        android:text="0"
+        android:visibility="gone"/>
+
+</RelativeLayout>

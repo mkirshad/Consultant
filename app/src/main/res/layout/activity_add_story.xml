@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.kashifirshad.listview.AddStoryActivity"
+    >
+
+<Button
+    android:id="@+id/btnSaveProj"
+    android:layout_width="150dp"
+    android:layout_height="40dp"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginStart="28dp"
+    android:text="Save"
+    android:textAllCaps="false" />
+
+<Button
+    android:id="@+id/btnHome"
+    android:layout_width="150dp"
+    android:layout_height="40dp"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginEnd="21dp"
+    android:text="Home"
+    android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/textProjName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btnSaveProj"
+        android:layout_marginTop="15dp"
+        android:text="Project Name:" />
+
+    <TextView
+        android:id="@+id/editProjTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textProjName"
+        android:layout_alignBottom="@+id/textProjName"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/textProjName"
+        android:hint="Project Name"
+        android:inputType="textPersonName"
+        android:maxLength="35"
+        android:text="Project Name2" />
+
+    <TextView
+        android:id="@+id/textHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textProjName"
+        android:text="Estimated No. of Hours for Development:"
+        android:layout_marginTop="15dp"
+
+        />
+
+
+    <EditText
+        android:id="@+id/editHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textHours"
+        android:layout_alignBottom="@+id/textHours"
+        android:layout_toEndOf="@+id/textHours"
+        android:hint="0"
+        android:inputType="textCapSentences|number" />
+
+    <TextView
+        android:id="@+id/textCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textHours"
+        android:text="Estimated Cost in $:"
+        android:layout_marginTop="15dp"
+        />
+
+    <EditText
+    android:id="@+id/editCost"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBaseline="@+id/textCost"
+    android:layout_alignBottom="@+id/textCost"
+        android:layout_toEndOf="@+id/textCost"
+
+    android:hint="0 $"
+    android:inputType="number"
+        android:layout_marginStart="10dp"
+    />
+
+
+    <TextView
+        android:id="@+id/txtStory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editCost"
+        android:layout_marginTop="15dp"
+        android:text="Story: "
+        />
+
+    <EditText
+        android:id="@+id/Story"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="120dp"
+        android:layout_alignBaseline="@+id/txtStory"
+        android:layout_alignBottom="@+id/txtStory"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/txtStory"
+        android:ems="10"
+        android:hint="Story"
+        android:inputType="textMultiLine"
+        android:visibility="visible"
+
+        />
+
+    <TextView
+        android:id="@+id/txtFile2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="10dp"
+        android:text="File Path"
+        android:layout_alignBaseline="@+id/txtStory"
+        android:layout_alignBottom="@+id/txtStory"
+        android:layout_toEndOf="@+id/txtStory"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnUploadFile"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/Story"
+        android:layout_marginTop="15dp"
+        android:text="Upload File"
+        android:textAllCaps="false"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/tv_file_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btnUploadFile"
+        android:layout_marginTop="15dp"
+        />
+
+
+    <TextView
+        android:id="@+id/textId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tv_file_name"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="15dp"
+        android:text="Id:"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textId2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textId"
+        android:layout_alignBottom="@+id/textId"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/textId"
+        android:text="0"
+        android:visibility="visible" />
+
+
+    <TextView
+        android:id="@+id/projectId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textId"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="15dp"
+        android:text="Project Id:"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/projectId2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/projectId"
+        android:layout_alignBottom="@+id/projectId"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/projectId"
+        android:text="0"
+        android:visibility="visible" />
+
+
+
+
+</RelativeLayout>
