@@ -16,9 +16,9 @@ import android.util.Log;
             // Do work here, based on the contents of dataString
 //            Toast.makeText(SyncService.this,"Service Is Running!", Toast.LENGTH_LONG).show();
             Log.e("service***","Service Runnimg");
-            ServerRequest sr = new ServerRequest(SyncService.this);
-
-
+            if(MainActivity.user != null && MainActivity.user.getEmailAddress() != null){
+                ServerRequest sr = new ServerRequest(SyncService.this);
+            }
         }
 
         public SyncService(){

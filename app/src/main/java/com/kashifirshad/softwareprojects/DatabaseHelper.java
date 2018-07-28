@@ -49,6 +49,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "UpdatedAt DATETIME, " +
             "IsSynched INTEGER, " +
             "ServerId INTEGER," +
+            "Password TEXT, " +
+            "IsEmailVerified INTEGER, " +
+            "IsLoggedIn INTEGER, " +
             "CONSTRAINT uq_email UNIQUE (EmailAddress) "+
             ")";
 
@@ -90,6 +93,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROJECT);
         // create new tables
         onCreate(db);
+    }
+
+    public void emptyDB(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        onUpgrade(db,0,0);
     }
 
     /*
@@ -383,6 +391,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
+    public User getLoggedInUser(){
+        User usr = new User();
+        String selectQuery = "SELECT * FROM " + TABLE_USER + " WHERE IsLoggedIn = 1 LIMIT 1 ";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c != null && c.moveToFirst())
+        {
+            usr.setId(c.getLong(c.getColumnIndex("Id")));
+            usr.setFirstName(c.getString(c.getColumnIndex("FirstName")));
+            usr.setLastName(c.getString(c.getColumnIndex("LastName")));
+            usr.setMiddleName(c.getString(c.getColumnIndex("MiddleName")));
+            usr.setEmailAddress(c.getString(c.getColumnIndex("EmailAddress")));
+            usr.setSkypeId(c.getString(c.getColumnIndex("SkypeId")));
+            usr.setWatsAppNo(c.getString(c.getColumnIndex("WatsAppNo")));
+            usr.setAddressLine1(c.getString(c.getColumnIndex("AddressLine1")));
+            usr.setAddressLine2(c.getString(c.getColumnIndex("AddressLine2")));
+            usr.setCity(c.getString(c.getColumnIndex("City")));
+            usr.setState(c.getString(c.getColumnIndex("State")));
+            usr.setCountry(c.getString(c.getColumnIndex("Country")));
+            usr.setShowUnreadStoriesOnly(c.getInt(c.getColumnIndex("UnReadOnly")));
+            usr.setSyncDuration(c.getInt(c.getColumnIndex("SyncDuration")));
+            usr.setCreatedAt(c.getString(c.getColumnIndex("CreatedAt")));
+            usr.setUpdatedAt(c.getString(c.getColumnIndex("UpdatedAt")));
+            usr.setSynched(c.getInt(c.getColumnIndex("IsSynched")));
+            usr.setServerId(c.getInt(c.getColumnIndex("ServerId")));
+        }
+        return usr;
+    }
+
     public User getUser(long id){
         User usr = new User();
         String selectQuery = "SELECT * FROM " + TABLE_USER + " WHERE Id = '" + Long.toString(id) +"'";
@@ -453,6 +490,7 @@ Log.e("UserQuery***",selectQuery);
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put("Id", user.getId());
         values.put("FirstName", user.getFirstName());
         values.put("MiddleName", user.getMiddleName());
         values.put("LastName", user.getLastName());
@@ -470,12 +508,12 @@ Log.e("UserQuery***",selectQuery);
         values.put("UpdatedAt", user.getUpdatedAt());
         values.put("IsSynched", user.getSynched());
         values.put("ServerId", user.getServerId());
+        values.put("IsLoggedIn", user.getIsLoggedIn());
 
         // insert row
         long id = db.insert(TABLE_USER, null, values);
         return id;
     }
-
 
     public long updateUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -497,6 +535,8 @@ Log.e("UserQuery***",selectQuery);
         values.put("UpdatedAt", user.getUpdatedAt());
         values.put("IsSynched", user.getSynched());
         values.put("ServerId", user.getServerId());
+        values.put("IsLoggedIn", user.getIsLoggedIn());
+
 
         // insert row
         return db.update(TABLE_USER, values,   " Id = ?",

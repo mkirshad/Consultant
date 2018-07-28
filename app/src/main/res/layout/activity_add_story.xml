@@ -143,6 +143,7 @@ tools:context="com.kashifirshad.listview.AddStoryActivity"
         android:text="Upload File"
         android:textAllCaps="false"
         android:layout_centerHorizontal="true"
+        android:visibility="gone"
         />
 
     <TextView

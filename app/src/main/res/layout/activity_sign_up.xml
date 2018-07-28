@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow>
+
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:hint="Email"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="30dp"
+                />
+
+        </TableRow>
+        <TableRow>
+            <EditText
+                android:id="@+id/pass1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="30dp"
+                android:hint="Password"
+                />
+        </TableRow>
+
+        <TableRow>
+            <EditText
+                android:id="@+id/pass2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="30dp"
+                android:hint="Re-Type Password"
+                />
+        </TableRow>
+        <TableRow>
+
+            <Button
+                android:id="@+id/btnSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="30dp"
+                android:text="SignUp"
+                android:textAllCaps="false" />
+        </TableRow>
+    </TableLayout>
+
+</android.support.constraint.ConstraintLayout>

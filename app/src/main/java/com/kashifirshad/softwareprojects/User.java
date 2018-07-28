@@ -28,10 +28,12 @@ public class User {
     String UpdatedAt;
     int IsSynched;
     long ServerId;
+    String Password;
+    int IsEmailVerified;
+    int IsLoggedIn;
+    int Token;
 
-    public User(){
-
-    }
+    public User(){}
     public User(long id, String firstName, String middleName, String lastName, String emailAddress, String skypeId, String watsAppNo, String addressLine1,
                 String addressLine2, String city, String state, String country, int syncDuration, int showUnreadStoriesOnly,
                 int isSynched, long serverId) {
@@ -229,12 +231,16 @@ public class User {
 
 
     public int getSyncDuration(){
+        if(SyncDuration == 0)
+            SyncDuration = 3;
         return SyncDuration;
     }
-
     public void setSyncDuration(int synchDuration){
          SyncDuration = synchDuration;
     }
+
+    public int getToken(){ return  Token;}
+    public void setToken(int token){ Token = token;}
 
     public int getShowUnreadStoriesOnly(){
         return ShowUnreadStoriesOnly;
@@ -242,6 +248,15 @@ public class User {
     public void setShowUnreadStoriesOnly(int showUnreadStoriesOnly){
         ShowUnreadStoriesOnly = showUnreadStoriesOnly;
     }
+
+    public String getPassword(){ return Password;}
+    public void setPassword(String password){ Password = password;}
+
+    public int getIsEmailVerified() { return IsEmailVerified;}
+    public void setIsEmailVerified(int isEmailVerified){ IsEmailVerified = isEmailVerified;}
+
+    public int getIsLoggedIn() { return IsLoggedIn;}
+    public void setIsLoggedIn(int isLoggedIn) { IsLoggedIn = isLoggedIn;}
 
     private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(

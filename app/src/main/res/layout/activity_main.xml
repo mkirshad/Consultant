@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.kashifirshad.listview.MainActivity"
+        tools:context="MainActivity"
         >
 
     <TextView
@@ -22,45 +22,68 @@
         android:typeface="serif"
 
      />
-
     <Button
         android:id="@+id/allowPermission"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@+id/textMsg"
         android:layout_centerHorizontal="true"
         android:text="Allow App Permissions"
         android:textAllCaps="false"
+        android:layout_below="@+id/textMsg"
         android:visibility="visible"
         />
 
+    <TableLayout
+        android:id="@+id/tbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textMsg"
+        android:visibility="gone"
+        >
+    <TableRow>
+
+
     <Button
         android:id="@+id/btnPreferences"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="-80dp"
-        android:layout_toRightOf="@id/allowPermission"
         android:layout_alignBottom="@id/allowPermission"
         android:text="Preferences"
         android:textAllCaps="false"
-        android:visibility="invisible"/>
+        android:layout_marginLeft="30dp"
+
+        />
 
     <Button
         android:id="@+id/addProj"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginRight="-80dp"
-        android:layout_toLeftOf="@id/allowPermission"
         android:layout_alignBottom="@id/allowPermission"
         android:text="Add Project"
         android:textAllCaps="false"
-        android:visibility="invisible"/>
+        android:layout_marginLeft="10dp"
+
+        />
+
+
+    <Button
+        android:id="@+id/logOut"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@id/btnPreferences"
+        android:text="LogOut"
+        android:textAllCaps="false"
+        android:layout_marginLeft="10dp"
+
+    />
+    </TableRow>
+    </TableLayout>
 
     <ExpandableListView
         android:id="@+id/lvExp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/addProj"
+        android:layout_below="@+id/tbl"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 

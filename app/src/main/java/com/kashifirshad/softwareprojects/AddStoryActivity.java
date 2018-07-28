@@ -70,7 +70,7 @@ public class AddStoryActivity extends AppCompatActivity {
         }
 
 
-        Button btnHome = (Button) findViewById(R.id.btnHome);
+        final Button btnHome = (Button) findViewById(R.id.btnHome);
         btnHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -132,7 +132,8 @@ public class AddStoryActivity extends AppCompatActivity {
                             dh.updateProject(projObj);
                         }
                         Toast.makeText(getApplicationContext(), "Project Saved Successfully", Toast.LENGTH_LONG).show();
-
+                        btnHome.performClick();
+                        btnHome.setPressed(true);
                     }
                     dh.closeDB();
                 }

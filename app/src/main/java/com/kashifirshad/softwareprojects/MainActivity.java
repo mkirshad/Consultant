@@ -13,10 +13,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupCollapseListener;
-import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -25,10 +21,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static android.Manifest.permission.ACCESS_NETWORK_STATE;
-import static android.Manifest.permission.GET_ACCOUNTS;
 import static android.Manifest.permission.INTERNET;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.Manifest.permission.READ_PHONE_STATE;
+
 
 public class MainActivity extends Activity {
     ExpandableListAdapter listAdapter;
@@ -55,30 +50,32 @@ public class MainActivity extends Activity {
                 EnableRuntimePermission();
             }
         });
-
         if(checkPermissions() != true){
             return;
         }
+        allowPermission.setVisibility(View.GONE);
+
+        final DatabaseHelper dh = new DatabaseHelper(getApplicationContext());
+        // Start SignUpActivity or Login Activity
+        if(this.user == null){
+            this.user = dh.getLoggedInUser();
+            if(this.user.getEmailAddress() == null){
+                Intent intent = new Intent(MainActivity.this, SignUpSignInActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        }
 
 
-        allowPermission.setVisibility(View.INVISIBLE);
-        userEmail = new UserEmailFetcher().getEmail(MainActivity.this.getApplicationContext());
+
+        userEmail = this.user.getEmailAddress();
         if(userEmail.equals("kashif.ir@gmail.com"))
             this.isSuperUser = true;
-        findViewById(R.id.addProj).setVisibility(View.VISIBLE);
-        findViewById(R.id.btnPreferences).setVisibility(View.VISIBLE);
+
+        findViewById(R.id.tbl).setVisibility(View.VISIBLE);
         ((TextView) findViewById(R.id.textMsg)).setText("You are logged in as " + userEmail);
 
-        DatabaseHelper DH = new DatabaseHelper(MainActivity.this);
-        this.user = DH.getUser(userEmail);
-
-        if(this.user.getEmailAddress()==null){
-            this.user = new User(null, null, null, userEmail, null, null, null,
-                    null, null, null, null, 30, 0,
-            0, 0);
-            this.user.setId(DH.createUser(this.user));
-        }
-        Log.e("user***", "Id:"+ Long.toString(this.user.getId())+"Email:"+this.user.getEmailAddress() );
 
         Button btnAddProj = (Button) findViewById(R.id.addProj);
         btnAddProj.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +97,16 @@ public class MainActivity extends Activity {
         });
 
 
+        Button btnLogOut = (Button) findViewById(R.id.logOut);
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dh.emptyDB();
+                MainActivity.user = null;
+                MainActivity.isSuperUser=false;
+                MainActivity.mainActivity.finish();
+                MainActivity.mainActivity.startActivity(MainActivity.mainActivity.getIntent());
+            }
+        });
 
 
 
@@ -116,7 +123,7 @@ public class MainActivity extends Activity {
         expListView.setAdapter(listAdapter);
 
         // Listview Group click listener
-        expListView.setOnGroupClickListener(new OnGroupClickListener() {
+        expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
 
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v,
@@ -129,7 +136,7 @@ public class MainActivity extends Activity {
         });
 
         // Listview Group expanded listener
-        expListView.setOnGroupExpandListener(new OnGroupExpandListener() {
+        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
             @Override
             public void onGroupExpand(int groupPosition) {
@@ -140,7 +147,7 @@ public class MainActivity extends Activity {
         });
 
         // Listview Group collasped listener
-        expListView.setOnGroupCollapseListener(new OnGroupCollapseListener() {
+        expListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
 
             @Override
             public void onGroupCollapse(int groupPosition) {
@@ -152,7 +159,7 @@ public class MainActivity extends Activity {
         });
 
         // Listview on child click listener
-        expListView.setOnChildClickListener(new OnChildClickListener() {
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
@@ -197,9 +204,10 @@ public class MainActivity extends Activity {
             }
         });
 //        listAdapter.IsFirstRun = 0;
-        DH.closeDB();
+        dh.closeDB();
         if(syncTimer == null){
-            int delayMS = user.getSyncDuration()*1000*60;
+            int delayMS = user.getSyncDuration()*1000;
+                delayMS = 3*1000;
             syncTimer = new Timer();
             syncTimer.scheduleAtFixedRate(
                     new TimerTask()
@@ -212,6 +220,7 @@ public class MainActivity extends Activity {
                     0,      // run first occurrence immediately
                     delayMS);  // run every three seconds
         }
+
     }
 
     @Override
@@ -265,8 +274,6 @@ public class MainActivity extends Activity {
     public void EnableRuntimePermission() {
         ActivityCompat.requestPermissions(MainActivity.this, new String[]
                 {
-                        GET_ACCOUNTS,
-                        READ_PHONE_STATE,
                         INTERNET,
                         ACCESS_NETWORK_STATE,
                         READ_EXTERNAL_STORAGE
@@ -279,12 +286,10 @@ public class MainActivity extends Activity {
         int res1 = getApplicationContext().checkCallingOrSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE);
         int res2 = getApplicationContext().checkCallingOrSelfPermission(android.Manifest.permission.ACCESS_NETWORK_STATE);
         int res3 = getApplicationContext().checkCallingOrSelfPermission(android.Manifest.permission.INTERNET);
-        int res4 = getApplicationContext().checkCallingOrSelfPermission(android.Manifest.permission.READ_PHONE_STATE);
-        int res5 = getApplicationContext().checkCallingOrSelfPermission(android.Manifest.permission.GET_ACCOUNTS);
 
         if ((res1 == PackageManager.PERMISSION_GRANTED) && (res2 == PackageManager.PERMISSION_GRANTED)
-        && res3 == PackageManager.PERMISSION_GRANTED && res4 == PackageManager.PERMISSION_GRANTED
-        && res5 == PackageManager.PERMISSION_GRANTED){
+        && res3 == PackageManager.PERMISSION_GRANTED
+            ){
             return true;
         }else{
             return false;

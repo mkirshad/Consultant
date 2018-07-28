@@ -62,7 +62,7 @@ public class PreferencesActivity extends AppCompatActivity {
         editTextCountry.setText(user.getCountry());
 
 
-        Button btnHome = (Button) findViewById(R.id.btnHome);
+        final Button btnHome = (Button) findViewById(R.id.btnHome);
         btnHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -111,6 +111,9 @@ public class PreferencesActivity extends AppCompatActivity {
                         },
                         0,      // run first occurrence immediately
                         delayMS);  // run every three seconds
+
+                btnHome.performClick();
+                btnHome.setPressed(true);
 
             }});
     }

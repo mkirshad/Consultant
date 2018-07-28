@@ -16,6 +16,15 @@ public class AddProjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_project);
 
+        final Button btnHome = (Button) findViewById(R.id.btnHome);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         Button btnAddProj = (Button) findViewById(R.id.btnSaveProj);
         btnAddProj.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -62,6 +71,8 @@ public class AddProjectActivity extends AppCompatActivity {
                             dh.updateProject(projObj);
                         }
                         Toast.makeText(getApplicationContext(), "Project Saved Successfully", Toast.LENGTH_LONG).show();
+                        btnHome.performClick();
+                        btnHome.setPressed(true);
 
                     }
                     dh.closeDB();
@@ -69,14 +80,7 @@ public class AddProjectActivity extends AppCompatActivity {
             }
         });
 
-        Button btnHome = (Button) findViewById(R.id.btnHome);
-        btnHome.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
     }
 
     @Override

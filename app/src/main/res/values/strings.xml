@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Software Projects</string>
+    <string name="title_activity_sign_up_sign_in">SignUpSignIn</string>
 </resources>
