@@ -57,16 +57,16 @@
 					$isLocked = $row['IsLocked'];
 					$userArr[$user['Id']]=$row['Id'];
 					$query = "UPDATE AndroidProjects_Users 
-					SET FirstName = '".$user['FirstName']."'
-					   ,MiddleName = '".$user['MiddleName']."'
-					   , LastName = '".$user['LastName']."'
-					   , SkypeId = '".$user['SkypeId']."'
-					   , WatsAppNo = '".$user['WatsAppNo']."'
-					   , AddressLine1 = '".$user['AddressLine1']."'
-					   , AddressLine2 = '".$user['AddressLine2']."'
-					   , City = '".$user['City']."'
-					   , State = '".$user['State']."'
-					   , Country = '".$user['Country']."'
+					SET FirstName = CASE WHEN IFNULL('".$user['FirstName']."','') = '' THEN FirstName ELSE '".$user['FirstName']."' END
+					   ,MiddleName = CASE WHEN IFNULL('".$user['MiddleName']."','') = '' THEN MiddleName ELSE '".$user['MiddleName']."' END
+					   , LastName = CASE WHEN IFNULL('".$user['LastName']."','') = '' THEN LastName ELSE '".$user['LastName']."' END
+					   , SkypeId = CASE WHEN IFNULL('".$user['SkypeId']."','') = '' THEN SkypeId ELSE '".$user['SkypeId']."' END
+					   , WatsAppNo = CASE WHEN IFNULL('".$user['WatsAppNo']."','') = '' THEN WatsAppNo ELSE '".$user['WatsAppNo']."' END
+					   , AddressLine1 = CASE WHEN IFNULL('".$user['AddressLine1']."','') = '' THEN AddressLine1 ELSE '".$user['AddressLine1']."' END
+					   , AddressLine2 = CASE WHEN IFNULL('".$user['AddressLine2']."','') = '' THEN AddressLine2 ELSE '".$user['AddressLine2']."' END
+					   , City = CASE WHEN IFNULL('".$user['City']."','') = '' THEN City ELSE '".$user['City']."' END
+					   , State = CASE WHEN IFNULL('".$user['State']."','') = '' THEN State ELSE '".$user['State']."' END
+					   , Country = CASE WHEN IFNULL('".$user['Country']."','') = '' THEN Country ELSE '".$user['Country']."' END
 					   , UnReadOnly = '".$user['ShowUnreadStoriesOnly']."'
 					   , SyncDuration = '".$user['SyncDuration']."'
 					   , UpdatedAt = '".$dateTime."'

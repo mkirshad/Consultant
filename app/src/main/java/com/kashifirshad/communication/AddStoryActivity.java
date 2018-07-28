@@ -137,6 +137,8 @@ public class AddStoryActivity extends AppCompatActivity {
                     }
                     dh.closeDB();
                 }
+                startService(new Intent(AddStoryActivity.this, SyncService.class));
+
             }
         });
 

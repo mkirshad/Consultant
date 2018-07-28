@@ -86,6 +86,7 @@ CREATE TABLE `AndroidProjects_Users` (
   `Token` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+ALTER TABLE `AndroidProjects_Users`  ADD  CHECK (EmailAddress <> '')
 --
 -- Table structure for table `EmailTokens`
 --

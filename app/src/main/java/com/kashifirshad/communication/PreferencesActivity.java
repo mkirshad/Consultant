@@ -114,6 +114,7 @@ public class PreferencesActivity extends AppCompatActivity {
 
                 btnHome.performClick();
                 btnHome.setPressed(true);
+                startService(new Intent(PreferencesActivity.this, SyncService.class));
 
             }});
     }

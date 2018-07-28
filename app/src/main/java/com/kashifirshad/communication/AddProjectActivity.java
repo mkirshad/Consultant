@@ -77,6 +77,7 @@ public class AddProjectActivity extends AppCompatActivity {
                     }
                     dh.closeDB();
                 }
+                startService(new Intent(AddProjectActivity.this, SyncService.class));
             }
         });
 
