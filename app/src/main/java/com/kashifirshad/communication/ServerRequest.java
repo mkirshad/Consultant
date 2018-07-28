@@ -1,4 +1,4 @@
-package com.kashifirshad.softwareprojects;
+package com.kashifirshad.communication;
 
 
 import android.content.Context;
@@ -104,8 +104,10 @@ public class ServerRequest {
                         user.setUpdatedAt(updatedAt);
                         user.setSynched(1);
                         user.setServerId(userObj.getLong("Id"));
-                        if( user.getId() == 0 )
+                        if( user.getId() == 0 ) {
+                            user.setId(user.getServerId());
                             dh.createUser(user);
+                        }
                         else
                             dh.updateUser(user);
                     }

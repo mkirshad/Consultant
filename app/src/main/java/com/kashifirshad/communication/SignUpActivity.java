@@ -1,4 +1,4 @@
-package com.kashifirshad.softwareprojects;
+package com.kashifirshad.communication;
 
 import android.content.Intent;
 import android.os.Build;
@@ -28,7 +28,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.kashifirshad.softwareprojects.ServerRequest.ct;
+import static com.kashifirshad.communication.ServerRequest.ct;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -72,7 +72,6 @@ public class SignUpActivity extends AppCompatActivity {
                 usr.setPassword(Common.get_SHA_512_SecurePassword(pass1));
                 usr.setCreatedAt(Common.getDateTime());
                 usr.setUpdatedAt(Common.getDateTime());
-                usr.setSyncDuration(30);
 
                 Gson gson = new Gson();
                 String json = gson.toJson(usr);
@@ -119,5 +118,12 @@ public class SignUpActivity extends AppCompatActivity {
                 });
                 queue.add(jsObjRequest);
     }});
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

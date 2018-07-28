@@ -1,4 +1,4 @@
-package com.kashifirshad.softwareprojects;
+package com.kashifirshad.communication;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,7 +33,9 @@ public class User {
     int IsLoggedIn;
     int Token;
 
-    public User(){}
+    public User(){
+        SyncDuration = 3;
+    }
     public User(long id, String firstName, String middleName, String lastName, String emailAddress, String skypeId, String watsAppNo, String addressLine1,
                 String addressLine2, String city, String state, String country, int syncDuration, int showUnreadStoriesOnly,
                 int isSynched, long serverId) {

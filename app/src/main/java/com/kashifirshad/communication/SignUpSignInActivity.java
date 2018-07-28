@@ -1,4 +1,4 @@
-package com.kashifirshad.softwareprojects;
+package com.kashifirshad.communication;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -30,5 +30,29 @@ public class SignUpSignInActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Button btnForgotten = (Button) findViewById(R.id.btnForgotten);
+        btnForgotten.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpSignInActivity.this, ForgottonPasswordActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        Button btnExit = (Button) findViewById(R.id.btnExit);
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

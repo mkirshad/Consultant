@@ -1,4 +1,4 @@
-package com.kashifirshad.softwareprojects;
+package com.kashifirshad.communication;
 
 //import android.support.v7.app.AppCompatActivity;
 //import android.os.Bundle;
@@ -54,17 +54,16 @@ public class MainActivity extends Activity {
             return;
         }
         allowPermission.setVisibility(View.GONE);
-
         final DatabaseHelper dh = new DatabaseHelper(getApplicationContext());
         // Start SignUpActivity or Login Activity
-        if(this.user == null){
+        if(this.user == null || this.user.getEmailAddress() == null){
+            Log.e("***user1****","***user1****");
             this.user = dh.getLoggedInUser();
-            if(this.user.getEmailAddress() == null){
-                Intent intent = new Intent(MainActivity.this, SignUpSignInActivity.class);
-                startActivity(intent);
-                finish();
-                return;
-            }
+            Log.e("***user2****","***user2****");
+            Intent intent = new Intent(MainActivity.this, SignUpSignInActivity.class);
+            startActivity(intent);
+            finish();
+            return;
         }
 
 

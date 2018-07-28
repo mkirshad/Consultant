@@ -13,15 +13,15 @@
 	/* grab the posts from the db */
 	
 	$p_string = $json_str = file_get_contents('php://input');
-
-	/*
+/*
 	$p_string = '
-	{"LastUpdatedProject":"0000-00-00 00:00:00","LastUpdatedUser":"0000-00-00 00:00:00","projects":[],"user":{"EmailAddress":"fauzia.kashif09@gmail.com","IsSynched":0,"Id":1,"ServerId":0,"ShowUnreadStoriesOnly":0,"SyncDuration":1}}
+{"LastUpdatedProject":"2018-06-28 04:31:22","LastUpdatedUser":"2018-06-28 07:08:03","projects":[],"user":{"AddressLine1":"","AddressLine2":"","City":"","Country":"","EmailAddress":"kashif.ir@gmail.com","FirstName":"","Id":23,"IsEmailVerified":0,"IsLoggedIn":1,"IsSynched":0,"LastName":"","MiddleName":"","Password":"7de5f8fa3769eef36c41d9659272a91b6cbdd13b903dde639e4b0a360a1e8caed3b752a0119fd2590f076958d21ddb0f16042a5c5768ce0a2c65ee3ae3a362ed","ServerId":23,"ShowUnreadStoriesOnly":0,"SkypeId":"","State":"","SyncDuration":1,"Token":0,"WatsAppNo":""}}
 	';
-	*/
-
+*/
 	$query = "INSERT INTO AndroidProjects_Requests(Request) VALUES ('$p_string')";
-	$mysqli->query($query) or die('Errant query:  '.$query);;
+	$mysqli->query($query) or die('Errant query:  '.$query);
+	$logId = $mysqli->insert_id;
+	
 	$isLocked = 0;
 	
 	$json_obj = json_decode($p_string, true);
@@ -182,11 +182,13 @@
 					   WHERE Id = ".array_values($userArr)[0]; 
 	$mysqli->query($query);
 // }
+	$response = json_encode(array('results'=>$results));
 	header('Content-type: application/json');
-	echo json_encode(array('results'=>$results));
+	echo $response;
 
-//	$query = "INSERT INTO Requests(Request) VALUES ('$p_string')";
-//	$result = mysqli_query($link,$query) or die('Errant query:  '.$query);
+	$query = "UPDATE AndroidProjects_Requests SET Response = '$response' WHERE Id = $logId";
+	$mysqli->query($query) or die('Errant query:  '.$query);
+
 
 	/* disconnect from the db */
 	@mysqli_close($link);

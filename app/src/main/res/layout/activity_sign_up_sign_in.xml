@@ -1,47 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpSignInActivity">
+    tools:context="com.kashifirshad.communication.SignUpSignInActivity"
+    android:layout_centerHorizontal="true"
+    android:gravity="center_horizontal|center"
+
+    >
 
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <TableRow>
+        android:layout_height="match_parent"
+        >
+    <TableRow
+        android:gravity="center_horizontal"
+        >
 
         <Button
             android:id="@+id/btnSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
             android:layout_marginTop="30dp"
             android:text="SignUp"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+
+            />
     </TableRow>
-        <TableRow>
+        <TableRow android:gravity="center_horizontal">
 
             <Button
                 android:id="@+id/btnSignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
                 android:layout_marginTop="30dp"
                 android:text="SignIn"
                 android:textAllCaps="false" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:gravity="center_horizontal">
 
             <Button
                 android:id="@+id/btnForgotten"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
                 android:layout_marginTop="30dp"
                 android:text="Forgotten Password"
+                android:textAllCaps="false" />
+        </TableRow>
+
+
+        <TableRow android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btnExit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Exit"
                 android:textAllCaps="false" />
         </TableRow>
     </TableLayout>
@@ -49,4 +69,4 @@
 
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

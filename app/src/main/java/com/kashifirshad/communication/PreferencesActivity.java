@@ -1,4 +1,4 @@
-package com.kashifirshad.softwareprojects;
+package com.kashifirshad.communication;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -120,8 +120,8 @@ public class PreferencesActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(getApplicationContext(),
-                "Press Home button to go back!" ,
-                Toast.LENGTH_LONG).show();
+        final Button btnHome = (Button) findViewById(R.id.btnHome);
+        btnHome.performClick();
+        btnHome.setPressed(true);
     }
 }
