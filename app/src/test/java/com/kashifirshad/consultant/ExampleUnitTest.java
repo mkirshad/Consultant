@@ -1,4 +1,4 @@
-package com.kashifirshad.communication;
+package com.kashifirshad.consultant;
 
 import org.junit.Test;
 

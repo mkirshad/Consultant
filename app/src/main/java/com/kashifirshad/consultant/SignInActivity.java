@@ -1,6 +1,7 @@
-package com.kashifirshad.communication;
+package com.kashifirshad.consultant;
 
 import android.content.Intent;
+import android.opengl.Visibility;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -22,25 +23,39 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ForgottonPasswordActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgotton_password);
-
+        setContentView(R.layout.activity_sign_in);
+        boolean isFirstTime = false;
         final EditText etToken = (EditText) findViewById(R.id.token);
         final EditText etEmail = (EditText) findViewById(R.id.email);
         final EditText etPass = (EditText) findViewById(R.id.pass1);
-        final EditText etPass2 = (EditText) findViewById(R.id.pass2);
 
-        Button btnReset = (Button) findViewById(R.id.btnReset);
-        btnReset.setOnClickListener(new View.OnClickListener() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if(bundle != null && !bundle.isEmpty()) {
+            if (bundle.containsKey("email")) {
+                String email = bundle.getString("email");
+                etEmail.setText(email);
+            }
+            if (bundle.containsKey("isFirstTime")) {
+                isFirstTime = bundle.getBoolean("isFirstTime");
+                if(isFirstTime){
+                    etToken.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+
+        Button allowPermission = (Button) findViewById(R.id.btnSignUp);
+        allowPermission.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             public void onClick(View v) {
                 String email = etEmail.getText().toString();
                 String pass = etPass.getText().toString();
-                String pass2 = etPass2.getText().toString();
                 String strToken = etToken.getText().toString();
                 int token = 0;
                 if(strToken != null && !strToken.isEmpty())
@@ -48,17 +63,21 @@ public class ForgottonPasswordActivity extends AppCompatActivity {
                 if(email.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Email is empty!", Toast.LENGTH_LONG).show();
                     return;
-                }else if(etPass.getVisibility() == View.VISIBLE && pass.isEmpty()){
+                }
+                if(pass.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Password is empty!", Toast.LENGTH_LONG).show();
                     return;
-                }else if(etPass.getVisibility() == View.VISIBLE && !pass.equals(pass2) ){
-                    Toast.makeText(getApplicationContext(), "Password and Re-Type Password not matched!", Toast.LENGTH_LONG).show();
-                    return;
-                }else if(etToken.getVisibility() == View.VISIBLE && token == 0){
+                }
+                if(etToken.getVisibility() == View.VISIBLE){
+                    if( token > 0 ){
+
+                    }
+                    else
+                    {
                         Toast.makeText(getApplicationContext(), "Email Token is empty!", Toast.LENGTH_LONG).show();
                         return;
+                    }
                 }
-
                 DatabaseHelper dh = new DatabaseHelper(getApplicationContext());
                 final  User usr = dh.getUser(email);
                 usr.setEmailAddress(email);
@@ -66,7 +85,7 @@ public class ForgottonPasswordActivity extends AppCompatActivity {
                 usr.setToken(token);
 
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                String url = "http://www.kashifirshad.com/AndroidProjects/ForgottonPassword.php";
+                String url = "http://www.kashifirshad.com/Consultant/UserSignIn.php";
 
                 Gson gson = new Gson();
                 String json = gson.toJson(usr);
@@ -102,14 +121,12 @@ public class ForgottonPasswordActivity extends AppCompatActivity {
                                 if(usr.getEmailAddress().equals("kashif.ir@gmail.com"))
                                     MainActivity.isSuperUser = true;
                                 // Do after Login Activity
-                                Intent intent = new Intent(ForgottonPasswordActivity.this, MainActivity.class);
+                                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
                             }else{
                                 if(msg.contains("Token")){
                                     etToken.setVisibility(View.VISIBLE);
-                                    etPass.setVisibility(View.VISIBLE);
-                                    etPass2.setVisibility(View.VISIBLE);
                                 }
                                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                             }

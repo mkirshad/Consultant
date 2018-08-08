@@ -1,4 +1,4 @@
-package com.kashifirshad.communication;
+package com.kashifirshad.consultant;
 
 import android.app.IntentService;
 import android.content.Intent;

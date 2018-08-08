@@ -2,7 +2,7 @@
 	error_reporting(E_ERROR | E_PARSE);
 	$dateTime = date('Y-m-d H:i:s', time());
 
-	$mysqli = new mysqli("localhost", "kashifir_user1", "Fastnu72!","kashifir_db1");
+	$mysqli = new mysqli("localhost", "kashifir_consultant", "Fastnu72!","kashifir_consultant");
 	
 	if (mysqli_connect_errno()) {
 		printf("Connect failed: %s\n", mysqli_connect_error());

@@ -1,4 +1,4 @@
-package com.kashifirshad.communication;
+package com.kashifirshad.consultant;
 
 import android.content.Intent;
 import android.os.Build;
@@ -28,7 +28,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.kashifirshad.communication.ServerRequest.ct;
+import static com.kashifirshad.consultant.ServerRequest.ct;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -65,7 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
-                String url = "http://www.kashifirshad.com/AndroidProjects/UserSignUp.php";
+                String url = "http://www.kashifirshad.com/Consultant/UserSignUp.php";
                 
                 final User usr = new User();
                 usr.setEmailAddress(email);

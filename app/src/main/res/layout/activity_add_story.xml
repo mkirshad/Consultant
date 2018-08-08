@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.kashifirshad.communication.AddStoryActivity"
+        tools:context=".AddStoryActivity"
         >
     <TableLayout
         android:layout_width="match_parent"
@@ -45,25 +45,25 @@
         android:id="@+id/textProjName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Project Name:" />
+        android:text="Topic:" />
     <TextView
         android:id="@+id/editProjTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:hint="Project Name"
+        android:hint="Topic"
         android:inputType="textPersonName"
         android:maxLength="35"
-        android:text="Project Name2" />
+        android:text="Topic" />
     </TableRow>
-        <TableRow android:layout_marginTop="15dp">
-    <TextView
-        android:id="@+id/textHours"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:text="Estimated Hours:"
-        />
+        <TableRow android:layout_marginTop="15dp" android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textHours"
+                android:layout_width="wrap_content"
+                android:layout_height="261dp"
+                android:layout_alignParentStart="true"
+                android:text="Estimated Hours:" />
     <EditText
         android:id="@+id/editHours"
         android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
         android:hint="0"
         android:inputType="textCapSentences|number" />
         </TableRow>
-        <TableRow  android:layout_marginTop="15dp">
+        <TableRow  android:layout_marginTop="15dp"  android:visibility="gone">
     <TextView
         android:id="@+id/textCost"
         android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
         android:layout_marginStart="10dp"
     />
         </TableRow>
-    <TableRow  android:layout_marginTop="15dp">
+    <TableRow  android:layout_marginTop="15dp" >
     <TextView
         android:id="@+id/txtStory"
         android:layout_width="wrap_content"
@@ -166,7 +166,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
-        android:text="Project Id:"
+        android:text="Topic Id:"
         android:visibility="visible" />
 
     <TextView

@@ -1,4 +1,4 @@
-package com.kashifirshad.communication;
+package com.kashifirshad.consultant;
 
 /**
  * Created by biome on 2/27/2018.

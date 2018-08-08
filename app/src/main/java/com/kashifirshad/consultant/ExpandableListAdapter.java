@@ -1,4 +1,4 @@
-package com.kashifirshad.communication;
+package com.kashifirshad.consultant;
 
 import android.content.Context;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package com.kashifirshad.communication;
+package com.kashifirshad.consultant;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

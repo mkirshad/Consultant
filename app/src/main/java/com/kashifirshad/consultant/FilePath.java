@@ -1,4 +1,4 @@
-package com.kashifirshad.communication;
+package com.kashifirshad.consultant;
 
 /**
  * Created by vamsi on 24-Feb-16.

@@ -1,4 +1,4 @@
-package com.kashifirshad.communication;
+package com.kashifirshad.consultant;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

@@ -1,4 +1,4 @@
-package com.kashifirshad.communication;
+package com.kashifirshad.consultant;
 
 
 import android.content.Context;
@@ -26,7 +26,7 @@ public class ServerRequest {
         this.ct = ct;
         RequestQueue queue = Volley.newRequestQueue(ct);
 
-        String url = "http://www.kashifirshad.com/AndroidProjects/SyncProjects.php";
+        String url = "http://www.kashifirshad.com/Consultant/SyncProjects.php";
         Gson gson = new Gson();
         Projects proj = new Projects(ct);
         String json = gson.toJson(proj);

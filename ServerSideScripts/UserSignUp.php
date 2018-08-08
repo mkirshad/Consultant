@@ -3,7 +3,7 @@
 	$dateTime = date('Y-m-d H:i:s', time());
 	$date = date('Y-m-d', time());
 
-	$mysqli = new mysqli("localhost", "kashifir_user1", "Fastnu72!","kashifir_db1");
+	$mysqli = new mysqli("localhost", "kashifir_consultant", "Fastnu72!","kashifir_consultant");
 	
 	if (mysqli_connect_errno()) {
 		printf("Connect failed: %s\n", mysqli_connect_error());
@@ -46,16 +46,22 @@
 
 					$mysqli->query($query) or die('Errant query:  '.$query);
 					$userId=$mysqli->insert_id;
+					
+					// User Registration Alert to Admin
+					$msgEmail = "New User Registered Consultant Android App: ".$user['EmailAddress'];
+					$msgEmail = wordwrap($msgEmail,100);
+					mail("kashif@kashifirshad.com","New User Registered Consultant Android App",$msgEmail);
+					
 					$msg = "Success";
 					
 					$query = "INSERT INTO EmailTokens(Email, Date, Token) VALUES( '".$user['EmailAddress']."','$date',$rand )";
 					$mysqli->query($query) or die('Errant query:  '.$query);
 					
-					$msgEmail = "Please use Token: ".$rand." on Login/Password Reset Screen to verify email address on Software Projects Android Application. 
+					$msgEmail = "Please use Token: ".$rand." on Login/Password Reset Screen to verify email address on Consultant Android Application. 
 					Some one has registered your email address on Software Projects Android App. 
 					If its not you, don't need to bother about.";
 					$msgEmail = wordwrap($msgEmail,100);
-					mail($user['EmailAddress'],"Email Verification Token Software Projects Android App",$msgEmail);
+					mail($user['EmailAddress'],"Email Verification Token Consultant Android App",$msgEmail);
 					
 				}ELSE{
 					$msg = "Eamail Address already exists. Reset password if not remember";

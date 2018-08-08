@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.kashifirshad.communication.AddProjectActivity"
+        tools:context=".AddProjectActivity"
         >
 
     <Button
@@ -35,7 +35,7 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/btnSaveProj"
         android:layout_marginTop="15dp"
-        android:text="Project Name:" />
+        android:text="Topic:" />
 
     <EditText
         android:id="@+id/editProjTitle"
@@ -44,7 +44,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textProjName"
         android:layout_marginTop="14dp"
-        android:hint="Project Name"
+        android:hint="Topic"
         android:inputType="textPersonName"
         android:maxLength="35" />
 
@@ -55,7 +55,8 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/editProjTitle"
         android:layout_marginTop="15dp"
-        android:text="Estimated No. of Hours for Development:" />
+        android:text="Estimated No. of Hours for Development:"
+        android:visibility="gone"/>
 
     <EditText
         android:id="@+id/editHours"
@@ -66,6 +67,7 @@
         android:layout_marginTop="10dp"
         android:hint="Estimated No. of Hours for Development"
         android:inputType="number"
+        android:visibility="gone"
         />
 
     <TextView
@@ -75,7 +77,8 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/editHours"
         android:layout_marginTop="15dp"
-        android:text="Estimated Cost in $:" />
+        android:text="Estimated Cost in $:"
+        android:visibility="gone"/>
 
     <EditText
         android:id="@+id/editCost"
@@ -86,6 +89,7 @@
         android:layout_marginTop="10dp"
         android:hint="Estimated Cost in $"
         android:inputType="number"
+        android:visibility="gone"
         />
 
     <TextView

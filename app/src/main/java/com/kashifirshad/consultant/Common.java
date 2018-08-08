@@ -1,4 +1,4 @@
-package com.kashifirshad.communication;
+package com.kashifirshad.consultant;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;

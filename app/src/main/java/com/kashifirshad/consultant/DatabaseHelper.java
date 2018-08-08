@@ -1,4 +1,4 @@
-package com.kashifirshad.communication;
+package com.kashifirshad.consultant;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "ProjectsDB.db";
+    private static final String DATABASE_NAME = "ConsultantDB.db";
 
     // Table Names
     private static final String TABLE_USER = "Users";
@@ -535,7 +535,8 @@ Log.e("UserQuery***",selectQuery);
         values.put("UpdatedAt", user.getUpdatedAt());
         values.put("IsSynched", user.getSynched());
         values.put("ServerId", user.getServerId());
-        values.put("IsLoggedIn", user.getIsLoggedIn());
+        if(user.getIsLoggedIn() != -1)
+            values.put("IsLoggedIn", user.getIsLoggedIn());
 
 
         // insert row
